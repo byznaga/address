@@ -12,11 +12,12 @@ class CreateStateProvincesTable extends Migration {
 	public function up()
 	{
 		Schema::create('state_provinces', function($table)
-                {
-                        $table->increments('id');
-                        $table->string('state_province', 45);
-                        $table->string('state_province_code_2_digit', 2);
-                });
+        {
+            $table->increments('id');
+            $table->integer('country_region_id');
+            $table->string('name', 45);
+            $table->string('code_2_digit', 2);
+        });
 	}
 
 	/**
