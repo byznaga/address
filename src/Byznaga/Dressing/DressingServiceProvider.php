@@ -28,7 +28,16 @@ class DressingServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		//
+		$this->app['dressing'] = $this->app->share(function($app)
+		{
+			return new Dressing;
+		});
+
+		$this->app->booting(function()
+		{
+		  $loader = \Illuminate\Foundation\AliasLoader::getInstance();
+		  $loader->alias('Dressing', 'Byznaga\Dressing\Facades\Dressing');
+		});
 	}
 
 	/**
