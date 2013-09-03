@@ -55,9 +55,96 @@ class Dressing {
 
 	}
 
-	public function test()
+	public function getStateProvinceByCode($code)
 	{
-		print_r($this->stateProvincesByCountryCode2Digit);
+		if (array_key_exists($code, $this->stateProvincesBy2DigitCode))
+		{
+			return $this->stateProvincesBy2DigitCode[$code];
+		}
+		else
+		{
+			return array();
+		}
+	}
+
+	public function getCountryRegionBy2DigitCode($code)
+	{
+		if (array_key_exists($code, $this->countryRegionsBy2DigitCode))
+		{
+			return $this->countryRegionsBy2DigitCode[strtoupper($code)];
+		}
+		else
+		{
+			return array();
+		}
+	}
+
+	public function getCountryRegionBy3DigitCode($code)
+	{
+		if (array_key_exists($code, $this->countryRegionsBy3DigitCode))
+		{
+			return $this->countryRegionsBy3DigitCode[strtoupper($code)];
+		}
+		else
+		{
+			return array();
+		}
+	}
+
+	public function getCountryRegionByCode($code)
+	{
+		if (strlen($code) === 2) 
+		{
+			return $this->getCountryRegionBy2DigitCode($code);
+		} 
+		else if (strlen($code) === 3)
+		{
+			return $this->getCountryRegionBy3DigitCode($code);
+		}
+		else
+		{
+			return array();
+		}
+	}
+
+	public function getStateProvincesByCountryRegion2DigitCode($code) 
+	{
+		if (array_key_exists($code, $this->stateProvincesByCountryCode2Digit))
+		{
+			return $this->stateProvincesByCountryCode2Digit[strtoupper($code)];
+		}
+		else
+		{
+			return array();
+		}
+	}
+
+	public function getStateProvincesByCountryRegion3DigitCode($code) 
+	{
+		if (array_key_exists($code, $this->stateProvincesByCountryCode3Digit))
+		{
+			return $this->stateProvincesByCountryCode3Digit[strtoupper($code)];
+		}
+		else
+		{
+			return array();
+		}
+	}
+
+	public function getStateProvincesByCountryRegionCode($code)
+	{
+		if (strlen($code) === 2) 
+		{
+			return $this->getStateProvincesByCountryRegion2DigitCode($code);
+		} 
+		else if (strlen($code) === 3)
+		{
+			return $this->getStateProvincesByCountryRegion3DigitCode($code);
+		}
+		else
+		{
+			return array();
+		}
 	}
 
 }

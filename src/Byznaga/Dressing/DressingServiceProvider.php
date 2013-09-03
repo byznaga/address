@@ -19,6 +19,8 @@ class DressingServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		$this->package('byznaga/dressing');
+
+		include __DIR__.'/../../routes.php';
 	}
 
 	/**
