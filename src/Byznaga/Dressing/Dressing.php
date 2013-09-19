@@ -4,6 +4,9 @@ use Config;
 use CountryRegion;
 use StateProvince;
 
+/**
+ *
+ */
 class Dressing {
 
 	protected $countryRegions = null;
