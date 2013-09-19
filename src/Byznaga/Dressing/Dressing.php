@@ -55,6 +55,11 @@ class Dressing {
 
 	}
 
+	public function getStateProvinces()
+	{
+		return $this->stateProvinces;
+	}
+
 	public function getStateProvinceByCode($code)
 	{
 		if (array_key_exists($code, $this->stateProvincesBy2DigitCode))
@@ -65,6 +70,11 @@ class Dressing {
 		{
 			return array();
 		}
+	}
+
+	public function getCountryRegions()
+	{
+		return $this->countryRegions;
 	}
 
 	public function getCountryRegionBy2DigitCode($code)
