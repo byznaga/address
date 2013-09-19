@@ -68,7 +68,7 @@ class Dressing {
 		}
 		else
 		{
-			return array();
+			return false;
 		}
 	}
 
@@ -85,7 +85,7 @@ class Dressing {
 		}
 		else
 		{
-			return array();
+			return false;
 		}
 	}
 
@@ -97,7 +97,7 @@ class Dressing {
 		}
 		else
 		{
-			return array();
+			return false;
 		}
 	}
 
@@ -113,7 +113,7 @@ class Dressing {
 		}
 		else
 		{
-			return array();
+			return false;
 		}
 	}
 
@@ -125,7 +125,7 @@ class Dressing {
 		}
 		else
 		{
-			return array();
+			return false;
 		}
 	}
 
@@ -137,7 +137,7 @@ class Dressing {
 		}
 		else
 		{
-			return array();
+			return false;
 		}
 	}
 
@@ -153,7 +153,7 @@ class Dressing {
 		}
 		else
 		{
-			return array();
+			return false;
 		}
 	}
 
