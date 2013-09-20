@@ -15,7 +15,8 @@
         "classmap": [
             "src/migrations",
             "src/seeds",
-            "src/models"
+            "src/models",
+            "src/controllers"
         ],
         "psr-0": {
             "Byznaga\\Dressing": "src/"

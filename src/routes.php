@@ -1,5 +1,6 @@
 <?php
 
+
 Route::get('/dressing/state_provinces', function()
 {
 	echo json_encode(Dressing::getStateProvinces());
@@ -34,6 +35,13 @@ Route::get('/dressing/country_region/{code?}', function($code = '')
 	}
 });
 
+Route::get('/dressing/country_regions/state_provinces/{digits?}', function($digits = '2')
+{
+	echo '<pre>';
+	echo print_r(Dressing::getStateProvincesByCountryRegions($digits));
+	echo '</pre>';
+});
+
 Route::get('/dressing/country_region/{code?}/state_provinces', function($code = '')
 {
 	if ($state_provinces = Dressing::getStateProvincesByCountryRegionCode($code))
@@ -45,3 +53,5 @@ Route::get('/dressing/country_region/{code?}/state_provinces', function($code = 
 		App::abort(404, 'State/provinces not found');
 	}
 });
+
+Route::resource('/dressing/address', 'AddressController');
