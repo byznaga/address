@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Byznaga\Dressing\CountryRegion as CountryRegion;
+use Byznaga\Dressing\StateProvince as StateProvince;
 
 class DressingSeeder extends Seeder {
 
@@ -31,35 +33,35 @@ class DressingSeeder extends Seeder {
     	$usaData = Config::get('dressing::usa_states');
 		foreach ($usaData as $row)
     	{
-    		$row['country_region_id'] = '226';
+    		$row['country_region_code_2_digit'] = 'US';
     		StateProvince::create($row);
     	}
 
 		$canadaData = Config::get('dressing::canada_provinces');
 		foreach ($canadaData as $row)
     	{
-    		$row['country_region_id'] = '38';
+    		$row['country_region_code_2_digit'] = 'CA';
     		StateProvince::create($row);
     	}
 
 		$mexicoData = Config::get('dressing::mexico_states');
 		foreach ($mexicoData as $row)
     	{
-    		$row['country_region_id'] = '140';
+    		$row['country_region_code_2_digit'] = 'MX';
     		StateProvince::create($row);
     	}
 
 		$brazilData = Config::get('dressing::brazil_states');
 		foreach ($brazilData as $row)
     	{
-    		$row['country_region_id'] = '30';
+    		$row['country_region_code_2_digit'] = 'BR';
     		StateProvince::create($row);
     	}
 
 		$australiaData = Config::get('dressing::australia_states');
     	foreach ($australiaData as $row)
     	{
-    		$row['country_region_id'] = '13';
+    		$row['country_region_code_2_digit'] = 'AU';
     		StateProvince::create($row);
     	}
 

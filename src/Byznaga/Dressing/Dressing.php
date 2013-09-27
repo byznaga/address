@@ -15,7 +15,6 @@ class Dressing {
 	protected $countryRegionsByName = null;
 	protected $stateProvincesByName = null;
 
-	protected $countryRegionsByID = null;
 	protected $countryRegionsBy2DigitCode = null;
 	protected $countryRegionsBy3DigitCode = null;
 	protected $stateProvincesBy2DigitCode = null;
@@ -27,22 +26,65 @@ class Dressing {
 	 */
 	public function __construct()
 	{
+		//Get the data from the database or the config file
+		if (Config::get('dressing::use_database'))
+		{
+			$countryRegions = CountryRegion::all();
+			$stateProvinces = StateProvince::all();
+		}
+		else
+		{
+			$countryRegions = Config::get('dressing::country_regions');
+			$stateProvinces = array();
+			$usaData = Config::get('dressing::usa_states');
+			foreach ($usaData as $row)
+	    	{
+	    		$row['country_region_code_2_digit'] = 'US';
+	    		$stateProvinces[] = $row;
+	    	}
 
-		$countryRegions = CountryRegion::all();
+			$canadaData = Config::get('dressing::canada_provinces');
+			foreach ($canadaData as $row)
+	    	{
+	    		$row['country_region_code_2_digit'] = 'CA';
+	    		$stateProvinces[] = $row;
+	    	}
+
+			$mexicoData = Config::get('dressing::mexico_states');
+			foreach ($mexicoData as $row)
+	    	{
+	    		$row['country_region_code_2_digit'] = 'MX';
+	    		$stateProvinces[] = $row;
+	    	}
+
+			$brazilData = Config::get('dressing::brazil_states');
+			foreach ($brazilData as $row)
+	    	{
+	    		$row['country_region_code_2_digit'] = 'BR';
+	    		$stateProvinces[] = $row;
+	    	}
+
+			$australiaData = Config::get('dressing::australia_states');
+	    	foreach ($australiaData as $row)
+	    	{
+	    		$row['country_region_code_2_digit'] = 'AU';
+	    		$stateProvinces[] = $row;
+	    	}
+		}
+		
+		//Use the data and fill arrays for easy access
 		foreach ($countryRegions as $row)
 		{
-			$this->countryRegions[] = array('id' => $row['id'], 'name' => $row['name'], 'code_2_digit' => $row['code_2_digit'], 'code_3_digit' => $row['code_3_digit']);
+			$this->countryRegions[] = array('name' => $row['name'], 'code_2_digit' => $row['code_2_digit'], 'code_3_digit' => $row['code_3_digit']);
 		}
 
-		$stateProvinces = StateProvince::all();
 		foreach ($stateProvinces as $row)
 		{
-			$this->stateProvinces[] = array('id' => $row['id'], 'name' => $row['name'], 'code_2_digit' => $row['code_2_digit'], 'country_region_id' => $row['country_region_id']);
+			$this->stateProvinces[] = array('name' => $row['name'], 'code_2_digit' => $row['code_2_digit'], 'country_region_code_2_digit' => $row['country_region_code_2_digit']);
 		}
 
 		foreach ($this->countryRegions as $row)
 		{
-			$this->countryRegionsByID[$row['id']] = $row;
 			$this->countryRegionsByName[$row['name']] = $row;
 			$this->countryRegionsBy2DigitCode[$row['code_2_digit']] = $row;
 			$this->countryRegionsBy3DigitCode[$row['code_3_digit']] = $row;
@@ -52,10 +94,10 @@ class Dressing {
 		{
 			$this->stateProvincesByName[$row['name']] = $row;
 			$this->stateProvincesBy2DigitCode[$row['code_2_digit']] = $row;
-			if (isset($this->countryRegionsByID[$row['country_region_id']]['code_2_digit']))
+			if (isset($this->countryRegionsBy2DigitCode[$row['country_region_code_2_digit']]['code_2_digit']))
 			{
-				$this->stateProvincesByCountryCode2Digit[$this->countryRegionsByID[$row['country_region_id']]['code_2_digit']][] = $row;
-				$this->stateProvincesByCountryCode3Digit[$this->countryRegionsByID[$row['country_region_id']]['code_3_digit']][] = $row;
+				$this->stateProvincesByCountryCode2Digit[$this->countryRegionsBy2DigitCode[$row['country_region_code_2_digit']]['code_2_digit']][] = $row;
+				$this->stateProvincesByCountryCode3Digit[$this->countryRegionsBy2DigitCode[$row['country_region_code_2_digit']]['code_3_digit']][] = $row;
 			}
 		}
 
@@ -263,7 +305,7 @@ class Dressing {
 		{
 			foreach ($this->stateProvinces as $row)
 			{
-				$countryRegion = $this->countryRegionsByID[$row['country_region_id']]; 
+				$countryRegion = $this->countryRegionsBy2DigitCode[$row['country_region_code_2_digit']]; 
 				$stateProvinceList[$countryRegion['name']][$row['code_2_digit']] = $row['name'];
 			}
 		}

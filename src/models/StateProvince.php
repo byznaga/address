@@ -1,6 +1,6 @@
-<?php 
+<?php namespace Byznaga\Dressing;
 
-class StateProvince extends Eloquent {
+class StateProvince extends \Eloquent {
 
     protected $table = 'state_provinces';
     public $timestamps = false;

@@ -1,13 +1,12 @@
 <?php
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Byznaga\Dressing\Address as Address;
 
 class AddressController extends \BaseController {
 
-	/**
-     * The layout that should be used for responses.
-     */
-    protected $layout = 'dressing::dressing.layouts.master';
+	protected $route = '/dressing/address';
+	protected $layout = 'dressing::layouts.master';
 
     public function __construct()
     {
@@ -24,7 +23,7 @@ class AddressController extends \BaseController {
 	 */
 	public function index()
 	{
-		$this->layout->content = View::make('dressing::dressing.tables.addresses');	
+		$this->layout->content = Oregano::datatable('\Byznaga\Dressing\Address');
 	}
 
 	/**
@@ -34,7 +33,7 @@ class AddressController extends \BaseController {
 	 */
 	public function create()
 	{
-		$this->layout->content = View::make('dressing::dressing.forms.create');
+		$this->layout->content = Oregano::formCreate('\Byznaga\Dressing\Address', $this->route);
 	}
 
 	/**
@@ -45,14 +44,7 @@ class AddressController extends \BaseController {
 	public function store()
 	{
 
-		$rules = array(
-			'street' => array('required'),
-			'city' => array('required'),
-			'state_province_code_2_digit' => array('required'),
-			'country_region_code_2_digit' => array('required'),
-		);
-
-	    $validator = Validator::make(Input::all(), $rules);
+	    $validator = Validator::make(Input::all(), Address::getRules());
 
 	    if ($validator->fails())
 	    {
@@ -85,8 +77,7 @@ class AddressController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$address = Address::findOrFail($id);
-		$this->layout->content = View::make('dressing::dressing.display.address', array('address'=>$address));
+		$this->layout->content = Oregano::displayResource(Address::findOrFail($id));
 	}
 
 	/**
@@ -98,7 +89,7 @@ class AddressController extends \BaseController {
 	public function edit($id)
 	{
 		$address = Address::findOrFail($id);
-		$this->layout->content = View::make('dressing::dressing.forms.edit', array('address'=>$address));
+		$this->layout->content = Oregano::formEdit($data);
 	}
 
 	/**
@@ -112,14 +103,7 @@ class AddressController extends \BaseController {
 
 		$address = Address::findOrFail($id);
 		
-		$rules = array(
-			'street' => array('required'),
-			'city' => array('required'),
-			'state_province_code_2_digit' => array('required'),
-			'country_region_code_2_digit' => array('required'),
-		);
-
-	    $validator = Validator::make(Input::all(), $rules);
+	    $validator = Validator::make(Input::all(), Address::getRules());
 
 	    if ($validator->fails())
 	    {

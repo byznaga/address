@@ -37,9 +37,7 @@ Route::get('/dressing/country_region/{code?}', function($code = '')
 
 Route::get('/dressing/country_regions/state_provinces/{digits?}', function($digits = '2')
 {
-	echo '<pre>';
-	echo print_r(Dressing::getStateProvincesByCountryRegions($digits));
-	echo '</pre>';
+	echo json_encode(Dressing::getStateProvincesByCountryRegions($digits));
 });
 
 Route::get('/dressing/country_region/{code?}/state_provinces', function($code = '')

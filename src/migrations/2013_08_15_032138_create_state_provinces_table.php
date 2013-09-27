@@ -14,7 +14,7 @@ class CreateStateProvincesTable extends Migration {
 		Schema::create('state_provinces', function($table)
         {
             $table->increments('id');
-            $table->integer('country_region_id');
+            $table->string('country_region_code_2_digit');
             $table->string('name', 45);
             $table->string('code_2_digit', 2);
         });

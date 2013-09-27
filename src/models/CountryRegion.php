@@ -1,6 +1,6 @@
-<?php 
+<?php namespace Byznaga\Dressing;
 
-class CountryRegion extends Eloquent {
+class CountryRegion extends \Eloquent {
 
     protected $table = 'country_regions';
     public $timestamps = false;

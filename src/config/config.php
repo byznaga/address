@@ -2,6 +2,8 @@
 
 return array(
 
+	'use_database' => false,
+
 	'country_regions' => array(
 		array('name' => 'Afghanistan', 'code_3_digit' => 'AFG', 'code_2_digit' => 'AF'),
 		array('name' => 'Albania', 'code_3_digit' => 'ALB', 'code_2_digit' => 'AL'),
