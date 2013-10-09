@@ -2,11 +2,11 @@
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Byznaga\Dressing\Address as Address;
+use Byznaga\Oregano\LayoutController as LayoutController;
 
-class AddressController extends \BaseController {
+class AddressController extends LayoutController {
 
 	protected $route = '/dressing/address';
-	protected $layout = 'dressing::layouts.master';
 
     public function __construct()
     {
@@ -15,26 +15,6 @@ class AddressController extends \BaseController {
 		    return Response::make('Address Not Found', 404);
 		});
     }
-
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
-	public function index()
-	{
-		$this->layout->content = Oregano::datatable('\Byznaga\Dressing\Address');
-	}
-
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
-	public function create()
-	{
-		$this->layout->content = Oregano::formCreate('\Byznaga\Dressing\Address', $this->route);
-	}
 
 	/**
 	 * Store a newly created resource in storage.
@@ -65,31 +45,10 @@ class AddressController extends \BaseController {
 			$address->lat = Input::get('lat');
 			$address->long = Input::get('long');
 			$address->save();
+
+			return Redirect::to('dressing/address');
 		}
 
-	}
-
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		$this->layout->content = Oregano::displayResource(Address::findOrFail($id));
-	}
-
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function edit($id)
-	{
-		$address = Address::findOrFail($id);
-		$this->layout->content = Oregano::formEdit($data);
 	}
 
 	/**
@@ -123,6 +82,9 @@ class AddressController extends \BaseController {
 			$address->lat = Input::get('lat');
 			$address->long = Input::get('long');
 			$address->save();
+
+			return Redirect::to('dressing/address');
+			
 		}
 
 	}

@@ -27,4 +27,27 @@ class Address extends OreganoModel {
 		'country_region_code_2_digit' => array('required'),
 	);
 
+    protected static $showOnCreate = array(
+        'street' => 'text',
+        'street_additional' => 'text',
+        'city' => 'text',
+        'state_province_code_2_digit' => 'text',
+        'zip' => 'text',
+        'country_region_code_2_digit' => 'text',
+        'lat' => 'text',
+        'long' => 'text'
+    );
+
+    protected static $showOnEdit = array(
+        'id' => 'text',
+        'street' => 'text',
+        'street_additional' => 'text',
+        'city' => 'text',
+        'state_province_code_2_digit' => 'text',
+        'zip' => 'text',
+        'country_region_code_2_digit' => 'text',
+        'lat' => 'text',
+        'long' => 'text'
+    );
+
 }

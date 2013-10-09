@@ -1,2 +1,3 @@
-laravel-byznaga-dressing
-========================
+dressing
+
+Laravel package for addresses

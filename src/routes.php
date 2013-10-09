@@ -52,4 +52,6 @@ Route::get('/dressing/country_region/{code?}/state_provinces', function($code = 
 	}
 });
 
-Route::resource('/dressing/address', 'AddressController');
+Route::get('address/scaffold', array('as' => 'address.scaffold', 'uses' => 'AddressController@scaffold'));
+Route::resource('address', 'AddressController');
+
