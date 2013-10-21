@@ -1,3 +1,3 @@
-dressing
+address
 
 Laravel package for addresses
