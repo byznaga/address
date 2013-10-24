@@ -1,4 +1,4 @@
-<?php namespace Byznaga\Dressing;
+<?php namespace Byznaga\Address;
 
 class StateProvince extends \Eloquent {
 

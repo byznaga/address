@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Byznaga\Dressing\CountryRegion as CountryRegion;
-use Byznaga\Dressing\StateProvince as StateProvince;
+use Byznaga\Address\CountryRegion as CountryRegion;
+use Byznaga\Address\StateProvince as StateProvince;
 
-class DressingSeeder extends Seeder {
+class AddressSeeder extends Seeder {
 
     public function run()
     {

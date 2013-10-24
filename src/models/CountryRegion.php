@@ -1,4 +1,4 @@
-<?php namespace Byznaga\Dressing;
+<?php namespace Byznaga\Address;
 
 class CountryRegion extends \Eloquent {
 

@@ -1,8 +1,8 @@
-<?php namespace Byznaga\Dressing;
+<?php namespace Byznaga\Address;
 
-use Byznaga\Oregano\Models\Oregano as OreganoModel;
+use Byznaga\Util\Models\Model as Model;
 
-class Address extends OreganoModel {
+class Address extends Model {
 
     protected $table = 'addresses';
     public $timestamps = false;

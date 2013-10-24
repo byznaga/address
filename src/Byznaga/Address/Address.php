@@ -1,4 +1,4 @@
-<?php namespace Byznaga\Dressing;
+<?php namespace Byznaga\Address;
 
 use Config;
 use CountryRegion;
@@ -7,7 +7,7 @@ use StateProvince;
 /**
  * Main class Dressing handles everything to do with Addresses, States, Countries, and Geocoding
  */
-class Dressing {
+class Address {
 
 	protected $countryRegions = null;
 	protected $stateProvinces = null;
