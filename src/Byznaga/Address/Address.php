@@ -27,44 +27,44 @@ class Address {
 	public function __construct()
 	{
 		//Get the data from the database or the config file
-		if (Config::get('dressing::use_database'))
+		if (Config::get('address::use_database'))
 		{
 			$countryRegions = CountryRegion::all();
 			$stateProvinces = StateProvince::all();
 		}
 		else
 		{
-			$countryRegions = Config::get('dressing::country_regions');
+			$countryRegions = Config::get('address::country_regions');
 			$stateProvinces = array();
-			$usaData = Config::get('dressing::usa_states');
+			$usaData = Config::get('address::usa_states');
 			foreach ($usaData as $row)
 	    	{
 	    		$row['country_region_code_2_digit'] = 'US';
 	    		$stateProvinces[] = $row;
 	    	}
 
-			$canadaData = Config::get('dressing::canada_provinces');
+			$canadaData = Config::get('address::canada_provinces');
 			foreach ($canadaData as $row)
 	    	{
 	    		$row['country_region_code_2_digit'] = 'CA';
 	    		$stateProvinces[] = $row;
 	    	}
 
-			$mexicoData = Config::get('dressing::mexico_states');
+			$mexicoData = Config::get('address::mexico_states');
 			foreach ($mexicoData as $row)
 	    	{
 	    		$row['country_region_code_2_digit'] = 'MX';
 	    		$stateProvinces[] = $row;
 	    	}
 
-			$brazilData = Config::get('dressing::brazil_states');
+			$brazilData = Config::get('address::brazil_states');
 			foreach ($brazilData as $row)
 	    	{
 	    		$row['country_region_code_2_digit'] = 'BR';
 	    		$stateProvinces[] = $row;
 	    	}
 
-			$australiaData = Config::get('dressing::australia_states');
+			$australiaData = Config::get('address::australia_states');
 	    	foreach ($australiaData as $row)
 	    	{
 	    		$row['country_region_code_2_digit'] = 'AU';

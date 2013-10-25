@@ -1,8 +1,8 @@
-<?php namespace Byznaga\Dressing;
+<?php namespace Byznaga\Address;
 
 use Illuminate\Support\ServiceProvider;
 
-class DressingServiceProvider extends ServiceProvider {
+class AddressServiceProvider extends ServiceProvider {
 
 	/**
 	 * Indicates if loading of the provider is deferred.
@@ -18,7 +18,7 @@ class DressingServiceProvider extends ServiceProvider {
 	 */
 	public function boot()
 	{
-		$this->package('byznaga/dressing');
+		$this->package('byznaga/address');
 
 		include __DIR__.'/../../routes.php';
 	}
@@ -30,7 +30,7 @@ class DressingServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{
-		$this->app['dressing'] = $this->app->share(function($app)
+		$this->app['address'] = $this->app->share(function($app)
 		{
 			return new Dressing;
 		});
@@ -38,7 +38,7 @@ class DressingServiceProvider extends ServiceProvider {
 		$this->app->booting(function()
 		{
 		  $loader = \Illuminate\Foundation\AliasLoader::getInstance();
-		  $loader->alias('Dressing', 'Byznaga\Dressing\Facades\Dressing');
+		  $loader->alias('Address', 'Byznaga\Address\Facades\Address');
 		});
 	}
 
